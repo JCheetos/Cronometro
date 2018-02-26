@@ -27,6 +27,9 @@ public class Principal {
             public void run() {
                 c.avanzar();
                 System.out.println(c.obtenerTiempo());
+                if (c.getMinutos().getValor()==1){
+                timerTask.cancel();
+                }
             }
         };
         TimerTask timerTask2 ;
@@ -35,26 +38,23 @@ public class Principal {
             public void run() {
                 c.retroceder();
                 System.out.println(c.obtenerTiempo());
+                if (c.getMinutos().getValor()==1){
+                    timerTask2.cancel();
+                }
             }
         };
         Timer timer = new Timer();      
         
+        while(timerTask.status)
+        timer.scheduleAtFixedRate(timerTask, 0, 100);
+     
         
-        for (int i = 0; i < 1000; i++) {
-            timer.scheduleAtFixedRate(timerTask, 0, 100);
-            if(i % 100 == 0){
-                c.guardarMemoria();
-            }
-        }
         
         System.out.println("Memorias:");
         c.mostrarMemorias();
         
         System.out.println("Retrocediendo:");
-        
-        for (int i = 0; i < 1000; i++) {
-            timer.scheduleAtFixedRate(timerTask2, 0, 100);
-        }
+        timer.scheduleAtFixedRate(timerTask2, 0, 100);
         
     }
     
