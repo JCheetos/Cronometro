@@ -14,51 +14,36 @@ public class Memoria {
     private UnidadTiempo segundos;
     private UnidadTiempo minutos;
     private UnidadTiempo horas;
-    
+
     public Memoria() {
         decimas = new UnidadTiempo(10);
         segundos = new UnidadTiempo(60);
         minutos = new UnidadTiempo(60);
         horas = new UnidadTiempo(24);
-    }
-
-    public String obtenerTiempo() {
-        return horas.obtenerValorFormateado()+" : "+
-               minutos.obtenerValorFormateado()+" : "+
-               segundos.obtenerValorFormateado()+" : "+
-               decimas.obtenerValorFormateado();
+    }  
+    
+    public void setValorDecimas(int valor){
+        decimas.setValor(valor);
     }
     
-    public UnidadTiempo getDecimas() {
-        return decimas;
-    }
-
-    public void setDecimas(UnidadTiempo decimas) {
-        this.decimas = decimas;
-    }
-
-    public UnidadTiempo getSegundos() {
-        return segundos;
-    }
-
-    public void setSegundos(UnidadTiempo segundos) {
-        this.segundos = segundos;
-    }
-
-    public UnidadTiempo getMinutos() {
-        return minutos;
-    }
-
-    public void setMinutos(UnidadTiempo minutos) {
-        this.minutos = minutos;
-    }
-
-    public UnidadTiempo getHoras() {
-        return horas;
-    }
-
-    public void setHoras(UnidadTiempo horas) {
-        this.horas = horas;
+    public void setValorSegundos(int valor){
+        segundos.setValor(valor);
     }
     
+    public void setValorMinutos(int valor){
+        minutos.setValor(valor);
+    }
+    
+    public void setValorHoras(int valor){
+        horas.setValor(valor);
+    }
+    
+    public String obtenerTiempo(){
+        return horas.obtenerValorFormateado()+ " : " +
+                minutos.obtenerValorFormateado()+ " : " +
+                segundos.obtenerValorFormateado()+ " : " +
+                decimas.obtenerValorFormateado();
+    }
+    
+        
 }

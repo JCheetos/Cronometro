@@ -7,29 +7,35 @@ package cronometro;
 
 import cronometro.logica.Cronometro;
 
-
-
 /**
  *
  * @author Estudiantes
  */
 public class Principal {
 
-    
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         Cronometro c = new Cronometro();
-        int o=0;
-        for (int i = 0 ; i <864000; i++){
+        
+        for (int i = 0; i < 1000; i++) {
             c.avanzar();
             System.out.println(c.obtenerTiempo());
-            if(i%100 == 0){
-                c.guardarMemoria(o);
-                o++;
+            if(i % 100 == 0){
+                c.guardarMemoria();
             }
         }
-        System.out.println();
-        System.out.println("Memorias: ");
+        
+        System.out.println("Memorias:");
         c.mostrarMemorias();
         
+        System.out.println("Retrocediendo:");
+        
+        for (int i = 0; i < 1000; i++) {
+            c.retroceder();
+        }
+        
     }
+    
 }
