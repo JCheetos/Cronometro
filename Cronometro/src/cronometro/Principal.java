@@ -20,47 +20,58 @@ public class Principal {
      */
     public static void main(String[] args) {
         Cronometro c = new Cronometro();
-        int a = 0 ;
+        final int a = 0;
         
-        TimerTask timerTask ;
-        timerTask = new TimerTask() {
+        Timer timer = new Timer();  
+        
+        TimerTask task;
+        task = new TimerTask(){
+            int contador=0;
             @Override
             public void run() {
                 c.avanzar();
                 System.out.println(c.obtenerTiempo());
+                contador++;
+                if(contador % 100 == 0){
+                    c.guardarMemoria();
+                }
             }
         };
-        TimerTask timerTask2 ;
-        timerTask2 = new TimerTask() {
+        
+        TimerTask task2 ;
+        task2 = new TimerTask() {
+            int contador=0;
             @Override
             public void run() {
                 c.retroceder();
                 System.out.println(c.obtenerTiempo());
             }
         };
-        Timer timer = new Timer();      
-        timer.scheduleAtFixedRate(timerTask, 0, 100);
         
-        while(a==0){
-            if (c.segundos.getValor()==10){
-                timerTask.cancel();
-                a=1;
-            }
+        timer.scheduleAtFixedRate(task, 0, 100);
+        try
+        {
+        Thread.sleep(15000);
         }
-        a=0;
+        catch (Exception e)
+        {
+        }
+        task.cancel();
         
         System.out.println("Memorias:");
         c.mostrarMemorias();
         
         System.out.println("Retrocediendo:");
-        timer.scheduleAtFixedRate(timerTask2, 0, 100);
+        timer.scheduleAtFixedRate(task2, 0, 100);
         
-        while(a==0) {
-            if (c.segundos.getValor()==10){
-                timerTask2.cancel();
-                a=1;
-            }
+        try
+        {
+        Thread.sleep(15001);
         }
+        catch (Exception e)
+        {
+        }
+        task2.cancel();
+        timer.cancel();
     }
-    
 }
