@@ -18,6 +18,7 @@ public class JFrameCronometro extends javax.swing.JFrame {
     Timer timer;
     Cronometro crono;
     boolean frozen;
+    boolean frozen2;
     /**
      * Creates new form JFrameCronometro
      */
@@ -26,8 +27,10 @@ public class JFrameCronometro extends javax.swing.JFrame {
         timer = new Timer();
         crono = new Cronometro();
         frozen = true;
+        frozen2 = true;
         
         timer.schedule(new Tarea(), 0, 100);
+        timer.schedule(new Tarea2(), 0, 100);
     }
 
     /**
@@ -47,7 +50,9 @@ public class JFrameCronometro extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         verMemorias = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        Titulo = new javax.swing.JLabel();
+        btnRetroceder = new javax.swing.JButton();
+        btnReiniciar = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -89,9 +94,25 @@ public class JFrameCronometro extends javax.swing.JFrame {
         verMemorias.setText("Memorias: ");
         jScrollPane2.setViewportView(verMemorias);
 
-        jLabel1.setFont(new java.awt.Font("SWLink", 0, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CRONOMETRO");
+        Titulo.setFont(new java.awt.Font("SWLink", 0, 36)); // NOI18N
+        Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Titulo.setText("CRONOMETRO");
+
+        btnRetroceder.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRetroceder.setText("Retroceder");
+        btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetrocederActionPerformed(evt);
+            }
+        });
+
+        btnReiniciar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReiniciar.setText("Reiniciar");
+        btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReiniciarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,9 +120,6 @@ public class JFrameCronometro extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -112,14 +130,22 @@ public class JFrameCronometro extends javax.swing.JFrame {
                                 .addComponent(btnDetener)
                                 .addGap(26, 26, 26)
                                 .addComponent(btnGuardar))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIniciar)
@@ -127,9 +153,13 @@ public class JFrameCronometro extends javax.swing.JFrame {
                     .addComponent(btnGuardar))
                 .addGap(18, 18, 18)
                 .addComponent(tiempoVisualizado, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
+                .addGap(63, 63, 63)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRetroceder)
+                    .addComponent(btnReiniciar))
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -137,16 +167,31 @@ public class JFrameCronometro extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         frozen=false;
+        frozen2=true;
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerActionPerformed
         frozen=true;
+        frozen2=true;
     }//GEN-LAST:event_btnDetenerActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         crono.guardarMemoria();
         verMemorias.setText("Memorias: "+"\n"+crono.mostrarMemoriasGUI());
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
+        frozen=true;
+        frozen2=false;
+    }//GEN-LAST:event_btnRetrocederActionPerformed
+
+    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
+        crono = new Cronometro();
+        frozen=true;
+        frozen2=true;
+        tiempoVisualizado.setText(crono.obtenerTiempo());
+        verMemorias.setText("Memorias: ");
+    }//GEN-LAST:event_btnReiniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,10 +229,12 @@ public class JFrameCronometro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Titulo;
     private javax.swing.JButton btnDetener;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnIniciar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnReiniciar;
+    private javax.swing.JButton btnRetroceder;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
@@ -199,8 +246,18 @@ public class JFrameCronometro extends javax.swing.JFrame {
         @Override
         public void run() {
             if (!frozen){
-            crono.avanzar();
-            tiempoVisualizado.setText(crono.obtenerTiempo());
+                crono.avanzar();
+                tiempoVisualizado.setText(crono.obtenerTiempo());
+            }
+        }
+    }
+    
+    class Tarea2 extends TimerTask {
+        @Override
+        public void run() {
+            if (!frozen2){
+                crono.retroceder();
+                tiempoVisualizado.setText(crono.obtenerTiempo());
             }
         }
     }
