@@ -111,5 +111,11 @@ public class Cronometro {
             System.out.println("Memoria: " + memoria.obtenerTiempo());
         }
     }
-
+    public String mostrarMemoriasGUI() {
+        String a = "";
+        for (Memoria memoria : memorias) {
+            a = (a+memoria.obtenerTiempo()+"\n");
+        }
+        return a;
+    }
 }
