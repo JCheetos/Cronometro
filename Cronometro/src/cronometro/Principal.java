@@ -20,6 +20,7 @@ public class Principal {
      */
     public static void main(String[] args) {
         Cronometro c = new Cronometro();
+        int a = 0 ;
         
         TimerTask timerTask ;
         timerTask = new TimerTask() {
@@ -27,9 +28,6 @@ public class Principal {
             public void run() {
                 c.avanzar();
                 System.out.println(c.obtenerTiempo());
-                if (c.getMinutos().getValor()==1){
-                timerTask.cancel();
-                }
             }
         };
         TimerTask timerTask2 ;
@@ -38,17 +36,18 @@ public class Principal {
             public void run() {
                 c.retroceder();
                 System.out.println(c.obtenerTiempo());
-                if (c.getMinutos().getValor()==1){
-                    timerTask2.cancel();
-                }
             }
         };
         Timer timer = new Timer();      
-        
-        while(timerTask.status)
         timer.scheduleAtFixedRate(timerTask, 0, 100);
-     
         
+        while(a==0){
+            if (c.segundos.getValor()==10){
+                timerTask.cancel();
+                a=1;
+            }
+        }
+        a=0;
         
         System.out.println("Memorias:");
         c.mostrarMemorias();
@@ -56,6 +55,12 @@ public class Principal {
         System.out.println("Retrocediendo:");
         timer.scheduleAtFixedRate(timerTask2, 0, 100);
         
+        while(a==0) {
+            if (c.segundos.getValor()==10){
+                timerTask2.cancel();
+                a=1;
+            }
+        }
     }
     
 }
