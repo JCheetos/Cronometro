@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Cronometro.java
+ * Copyright (c) 2018 Valentina Tobo 20172020063, Camilo Torres 20172020067, Johan Mendez 20172020070
  */
 package cronometro.gui;
 
@@ -10,8 +9,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
+ * La clase JFrameCronometro permite inicializar el timer, el objeto Cronometro
+ * y dos variables boolean para controlar el avanzar, retroceder y detener del
+ * cronometro
  *
- * @author Estudiantes
+ * @author Valentina Uscategui Tobo - 20172020063
+ * @author Camilo Torres Rodriguez - 20172020067
+ * @author Johan Mendez Vega - 20172020070
  */
 public class JFrameCronometro extends javax.swing.JFrame {
 
@@ -21,7 +25,10 @@ public class JFrameCronometro extends javax.swing.JFrame {
     boolean frozen2;
 
     /**
-     * Creates new form JFrameCronometro
+     * Esta clase sirve para darle un valor a las variables timer, crono, frozen
+     * y frozen2 Esta clase ejecuta las tareas en segundo plano que haran
+     * avanzar o retroceder el cronometro, ejecutandose una vez cada decima de
+     * segundo
      */
     public JFrameCronometro() {
         initComponents();
@@ -29,7 +36,6 @@ public class JFrameCronometro extends javax.swing.JFrame {
         crono = new Cronometro();
         frozen = true;
         frozen2 = true;
-
         timer.schedule(new Tarea(), 0, 100);
         timer.schedule(new Tarea2(), 0, 100);
     }
@@ -195,7 +201,9 @@ public class JFrameCronometro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReiniciarActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Constructor de la clase
+     *
+     * @param args String
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -245,6 +253,12 @@ public class JFrameCronometro extends javax.swing.JFrame {
 
     class Tarea extends TimerTask {
 
+        /**
+         * Esta función se encarga de ejecutar en segundo plano el avance del
+         * cronometro (Programado para ejecutarse cada decima de segundo) Las
+         * acciones de la funcion se ven detenidas mientras la variable boolean
+         * frozen sea igual a true
+         */
         @Override
         public void run() {
             if (!frozen) {
@@ -256,6 +270,12 @@ public class JFrameCronometro extends javax.swing.JFrame {
 
     class Tarea2 extends TimerTask {
 
+        /**
+         * Esta función se encarga de ejecutar en segundo plano el retroceso del
+         * cronometro (Programado para ejecutarse cada decima de segundo) Las
+         * acciones de la funcion se ven detenidas mientras la variable boolean
+         * frozen2 sea igual a true
+         */
         @Override
         public void run() {
             if (!frozen2) {

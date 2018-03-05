@@ -1,40 +1,78 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Cronometro.java
+ * Copyright (c) 2018 Valentina Tobo 20172020063, Camilo Torres 20172020067, Johan Mendez 20172020070
  */
 package cronometro.logica;
 
 /**
+ * La clase UnidadTiempo define y maneja las unidades de tiempo para hacer
+ * funcionar correctamente el cronometro
  *
- * @author Estudiantes
+ * @author Valentina Uscategui Tobo - 20172020063
+ * @author Camilo Torres Rodriguez - 20172020067
+ * @author Johan Mendez Vega - 20172020070
  */
 public class UnidadTiempo {
 
     private int tope;
     private int valor;
 
+    /**
+     * Constructor de la clase
+     *
+     * @param tope int
+     */
     public UnidadTiempo(int tope) {
         this.tope = tope;
         this.valor = 0;
     }
 
+    /**
+     * La funcion se encarga de retornar el valor del Tope de alguna Unidad de
+     * Tiempo del objeto tipo Cronometro del cual es llamada
+     *
+     * @return tope
+     */
     public int getTope() {
         return tope;
     }
 
+    /**
+     * La funcion se encarga de definir el valor del Tope de alguna Unidad de
+     * Tiempo del objeto tipo Cronometro del cual es llamada
+     *
+     * @param tope int
+     */
     public void setTope(int tope) {
         this.tope = tope;
     }
 
+    /**
+     * La funcion se encarga de retornar el valor de alguna Unidad de
+     * Tiempo del objeto tipo Cronometro del cual es llamada
+     *
+     * @return valor
+     */
     public int getValor() {
         return valor;
     }
 
+    /**
+     * La funcion se encarga de retornar el valor de las decimas del objeto tipo
+     * Cronometro del cual es llamada
+     *
+     * @param valor int
+     */
     public void setValor(int valor) {
         this.valor = valor;
     }
 
+    /**
+     * La funcion se encarga de retornar el valor de las decimas del objeto tipo
+     * Cronometro del cual es llamada
+     *
+     * @return ValorFormateado
+     */
     public String obtenerValorFormateado() {
         if (this.valor < 10 && this.tope > 10) {
             return "0" + this.valor;
@@ -43,6 +81,10 @@ public class UnidadTiempo {
         }
     }
 
+    /**
+     * La funcion se encarga de retornar el valor de las decimas del objeto tipo
+     * Cronometro del cual es llamada
+     */
     public void avanzar() {
         valor++;
         if (valor == tope) {
@@ -50,6 +92,10 @@ public class UnidadTiempo {
         }
     }
 
+    /**
+     * La funcion se encarga de retornar el valor de las decimas del objeto tipo
+     * Cronometro del cual es llamada
+     */
     public void retroceder() {
         valor--;
         if (valor < 0) {
