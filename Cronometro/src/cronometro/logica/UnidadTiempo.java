@@ -49,11 +49,11 @@ public class UnidadTiempo {
             valor = 0;
         }
     }
-    
+
     public void retroceder() {
         valor--;
         if (valor < 0) {
-            valor = tope-1;
+            valor = tope - 1;
         }
     }
 }

@@ -6,7 +6,6 @@
 package cronometro.logica;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  *
@@ -76,17 +75,17 @@ public class Cronometro {
 
     public void retroceder() {
         decimas.retroceder();
-        if (decimas.getValor() == decimas.getTope()-1) {
+        if (decimas.getValor() == decimas.getTope() - 1) {
             segundos.retroceder();
-            if (segundos.getValor() == segundos.getTope()-1) {
+            if (segundos.getValor() == segundos.getTope() - 1) {
                 minutos.retroceder();
-                if (minutos.getValor() == minutos.getTope()-1) {
+                if (minutos.getValor() == minutos.getTope() - 1) {
                     horas.retroceder();
                 }
             }
         }
     }
-    
+
     public String obtenerTiempo() {
         return horas.obtenerValorFormateado() + " : "
                 + minutos.obtenerValorFormateado() + " : "
@@ -96,14 +95,14 @@ public class Cronometro {
 
     public void guardarMemoria() {
         Memoria m = new Memoria();
-        
+
         m.setValorDecimas(decimas.getValor());
         m.setValorSegundos(segundos.getValor());
         m.setValorMinutos(minutos.getValor());
         m.setValorHoras(horas.getValor());
-        
+
         memorias.add(m);
-        
+
     }
 
     public void mostrarMemorias() {
@@ -111,10 +110,11 @@ public class Cronometro {
             System.out.println("Memoria: " + memoria.obtenerTiempo());
         }
     }
+
     public String mostrarMemoriasGUI() {
         String a = "";
         for (Memoria memoria : memorias) {
-            a = (a+memoria.obtenerTiempo()+"\n");
+            a = (a + memoria.obtenerTiempo() + "\n");
         }
         return a;
     }

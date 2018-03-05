@@ -6,7 +6,6 @@
 package cronometro.gui;
 
 import cronometro.logica.Cronometro;
-import cronometro.logica.Memoria;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,10 +14,12 @@ import java.util.TimerTask;
  * @author Estudiantes
  */
 public class JFrameCronometro extends javax.swing.JFrame {
+
     Timer timer;
     Cronometro crono;
     boolean frozen;
     boolean frozen2;
+
     /**
      * Creates new form JFrameCronometro
      */
@@ -28,7 +29,7 @@ public class JFrameCronometro extends javax.swing.JFrame {
         crono = new Cronometro();
         frozen = true;
         frozen2 = true;
-        
+
         timer.schedule(new Tarea(), 0, 100);
         timer.schedule(new Tarea2(), 0, 100);
     }
@@ -166,29 +167,29 @@ public class JFrameCronometro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        frozen=false;
-        frozen2=true;
+        frozen = false;
+        frozen2 = true;
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerActionPerformed
-        frozen=true;
-        frozen2=true;
+        frozen = true;
+        frozen2 = true;
     }//GEN-LAST:event_btnDetenerActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         crono.guardarMemoria();
-        verMemorias.setText("Memorias: "+"\n"+crono.mostrarMemoriasGUI());
+        verMemorias.setText("Memorias: " + "\n" + crono.mostrarMemoriasGUI());
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
-        frozen=true;
-        frozen2=false;
+        frozen = true;
+        frozen2 = false;
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
         crono = new Cronometro();
-        frozen=true;
-        frozen2=true;
+        frozen = true;
+        frozen2 = true;
         tiempoVisualizado.setText(crono.obtenerTiempo());
         verMemorias.setText("Memorias: ");
     }//GEN-LAST:event_btnReiniciarActionPerformed
@@ -243,19 +244,21 @@ public class JFrameCronometro extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     class Tarea extends TimerTask {
+
         @Override
         public void run() {
-            if (!frozen){
+            if (!frozen) {
                 crono.avanzar();
                 tiempoVisualizado.setText(crono.obtenerTiempo());
             }
         }
     }
-    
+
     class Tarea2 extends TimerTask {
+
         @Override
         public void run() {
-            if (!frozen2){
+            if (!frozen2) {
                 crono.retroceder();
                 tiempoVisualizado.setText(crono.obtenerTiempo());
             }
