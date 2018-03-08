@@ -68,7 +68,7 @@ public class Cronometro {
 
     /**
      * La funcion se encarga de retornar el valor de los minutos del objeto tipo
-     * Cronometro del cual es llamada
+     * Cronometro del cual es llamada.
      */
     public UnidadTiempo getMinutos() {
         return minutos;
