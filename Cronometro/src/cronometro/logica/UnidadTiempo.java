@@ -48,7 +48,7 @@ public class UnidadTiempo {
     }
 
     /**
-     * La funcion se encarga de retornar el valor de alguna Unidad de
+     * La funcion se encarga de retornar el valor 0 de alguna Unidad de
      * Tiempo del objeto tipo Cronometro del cual es llamada
      *
      * @return valor
@@ -58,9 +58,9 @@ public class UnidadTiempo {
     }
 
     /**
-     * La funcion se encarga de retornar el valor de las decimas del objeto tipo
-     * Cronometro del cual es llamada
-     *
+     * La funcion se encarga de definir el valor 0 de alguna Unidad de
+     *Tiempo del objeto tipo Cronometro de la cual es llamada
+     * 
      * @param valor int
      */
     public void setValor(int valor) {
@@ -68,9 +68,10 @@ public class UnidadTiempo {
     }
 
     /**
-     * La funcion se encarga de retornar el valor de las decimas del objeto tipo
-     * Cronometro del cual es llamada
-     *
+     * La funcion se encarga tomar el valor de las horas, de convertir a string
+     * los valores de tiempo recibidos ajustandolos a un formato logico para la 
+     * visualizacion del ususario
+     * 
      * @return ValorFormateado
      */
     public String obtenerValorFormateado() {
@@ -82,8 +83,8 @@ public class UnidadTiempo {
     }
 
     /**
-     * La funcion se encarga de retornar el valor de las decimas del objeto tipo
-     * Cronometro del cual es llamada
+     * La funcion se encarga de sumar a cada unidad de tiempo +1 hasta que 
+     * llegue a su tope, y lo retorna a valor 0 
      */
     public void avanzar() {
         valor++;
@@ -93,8 +94,8 @@ public class UnidadTiempo {
     }
 
     /**
-     * La funcion se encarga de retornar el valor de las decimas del objeto tipo
-     * Cronometro del cual es llamada
+     * La funcion se encarga de restar a cada unidad de tiempo -1 hasta que
+     * llegue a 0, y lo retorna al valor Tope
      */
     public void retroceder() {
         valor--;
